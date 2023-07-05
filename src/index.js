@@ -1,5 +1,7 @@
+const express=require('express');
 const {PORT}= require('./config');
-const express=require('express')
+const mountRoutes=require('./routes');
+
 
 const app=express();
 
@@ -12,6 +14,8 @@ app.get('/' , (req , res)=>{
     })
 })
 
+
+app.use('/api' , mountRoutes);
 
 app.listen(PORT , function exec(){
 
