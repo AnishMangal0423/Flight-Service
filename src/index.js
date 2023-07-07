@@ -1,23 +1,21 @@
-const express=require('express');
-const {PORT}= require('./config');
-const mountRoutes=require('./routes');
+const express = require("express");
+const { PORT } = require("./config");
+const mountRoutes = require("./routes");
 
+const app = express();
 
-const app=express();
+app.get("/", (req, res) => {
+  res.json({
+    name: "Anish",
+    fg: "Pranu Bhandari",
+  });
+});
 
-app.get('/' , (req , res)=>{
+app.use("/api", mountRoutes);
 
-    res.json({
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-      name:"Anish",
-      fg:"Pranu Bhandari"
-    })
-})
-
-
-app.use('/api' , mountRoutes);
-
-app.listen(PORT , function exec(){
-
-      console.log(`Starting My server at Port ${PORT}`);
-})
+app.listen(PORT, function exec() {
+  console.log(`Starting My server at Port ${PORT}`);
+});

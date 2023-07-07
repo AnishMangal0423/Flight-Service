@@ -1,8 +1,10 @@
 const express=require('express')
 const router=express.Router();
-const {info}=require('../../controllers');
+const {Info}=require('../../controllers');
+const airplane_routes=require('./airplane-routes');
 
-router.get('/info' , info)
+router.get('/info' , Info);
+router.use('/airplanes' , airplane_routes);
 
 module.exports=router
 
