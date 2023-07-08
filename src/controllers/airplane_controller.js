@@ -2,7 +2,8 @@ const { airplane_Service } = require("../services");
 
 async function MakeAirplane(req, res) {
   try {
-    console.log("inside controller")
+    console.log("inside controller");
+
     const airplane = await airplane_Service.createAirpalne({
       modelNumber: req.body.modelNumber,
       capacity: req.body.capacity,
@@ -11,7 +12,7 @@ async function MakeAirplane(req, res) {
     return res.json({
       success: true,
       message: "Successfully Created ann airplane",
-      data: response,
+      data: airplane,
       error: {},
     });
   } catch (error) {
@@ -21,11 +22,10 @@ async function MakeAirplane(req, res) {
       success: false,
       message: "Something went wrong",
       data: {},
-      error: error,
     });
   }
 }
 
 module.exports = {
-        MakeAirplane
+  MakeAirplane,
 };

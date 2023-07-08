@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const {Model} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Airplane extends Model {
     /**
@@ -13,15 +11,25 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+
+
+
   Airplane.init({
     modelNumber:{ 
      type: DataTypes.STRING,
-       allowNull:false,
+       allowNull:false
     } ,
-    capacity: DataTypes.INTEGER,
+    capacity: {
+      type:  DataTypes.INTEGER,
+      defaultValue:0,
+   
+    }
+    
   }, {
     sequelize,
     modelName: 'Airplane',
   });
+
+
   return Airplane;
 };

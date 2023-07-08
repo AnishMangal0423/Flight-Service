@@ -7,6 +7,8 @@ async function createAirpalne(data) {
 console.log("inside services");
 
     const airplane = await airplaneRepository.create(data);
+    //   console.log(airplane)
+
     return airplane;
   } catch (error) {
     console.log("There is some error in airplane service");

@@ -10,11 +10,12 @@ app.get("/", (req, res) => {
     fg: "Pranu Bhandari",
   });
 });
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use("/api", mountRoutes);
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.listen(PORT, function exec() {
   console.log(`Starting My server at Port ${PORT}`);
