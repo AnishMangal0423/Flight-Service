@@ -1,6 +1,6 @@
-const AirplaneRepository=require('./airplane-repository');
-
 module.exports={
 
-    AirplaneRepository:AirplaneRepository,
+    AirplaneRepository:require('./airplane-repository'),
+    CitiesRepository:require('./city-repository')
+
 }
