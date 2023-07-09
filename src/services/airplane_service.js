@@ -3,6 +3,9 @@ const AppError = require("../utils/errors/AppError");
 const { StatusCodes } = require("http-Status-Codes");
 const airplaneRepository = new AirplaneRepository();
 
+
+
+
 async function createAirpalne(data) {
   try {
     console.log("inside services");
@@ -12,7 +15,7 @@ async function createAirpalne(data) {
 
     return airplane;
   } catch (error) {
-    console.log("There is some error in airplane service");
+    console.log("There is some error in airplane create service ");
 
     if (error.name == "SequelizeValidationError") {
       let explanation = [];
@@ -32,6 +35,26 @@ async function createAirpalne(data) {
   }
 }
 
+
+async function getAirplanes(){
+
+    try{
+           const airplanes=await airplaneRepository.getAll();
+           return airplanes;
+
+    }
+
+    catch(error){
+      throw new AppError(
+        "Cannot Get Airplanes object ",
+        StatusCodes.INTERNAL_SERVER_ERROR
+      );
+    }
+
+}
+
+
 module.exports = {
   createAirpalne,
+  getAirplanes
 };

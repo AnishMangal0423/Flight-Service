@@ -31,6 +31,32 @@ async function MakeAirplane(req, res) {
   }
 }
 
+
+async function getairplanes(req , res){
+
+  try {
+    
+      const airplanes=await airplane_Service.getAirplanes();
+      Correct_Res.data=airplanes;
+
+      return res.json({
+
+        Correct_Res
+      })
+
+  } catch (error) {
+    Error_Res.message = " Something went wrong .. ";
+    Error_Res.Error.description = error.message
+    
+
+    return res.status(error.statuscode).json({
+      Error_Res,
+    }); 
+  }
+}
+
+
 module.exports = {
   MakeAirplane,
+  getairplanes
 };
