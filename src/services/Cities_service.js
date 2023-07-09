@@ -40,7 +40,110 @@ async function CreateCities(data){
     }
 }
 
+
+
+
+
+
+async function getCities(){
+
+    try{
+           const cities=await citiesRepository.getAll();
+           return cities;
+
+    }
+
+    catch(error){
+      throw new AppError(
+        "Cannot Get cities object ",
+        StatusCodes.INTERNAL_SERVER_ERROR
+      );
+    }
+
+}
+
+
+
+
+async function getcity(id){
+
+  try{
+         const city=await citiesRepository.get(id);
+         return city;
+
+  }
+
+  catch(error){
+// console.log("hello "+error)
+// console.log("hwb "+error.statuscode)
+// console.log(StatusCodes.NOT_FOUND)
+    if(error.statuscode == StatusCodes.NOT_FOUND){
+
+      throw new AppError("U passed wrong id parameter that is out of limit " , error.statuscodes);
+    }
+
+    throw new AppError(
+      "Cannot Get city object ",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+
+    
+  }
+
+}
+
+
+
+async function destroycity(id){
+
+  try {
+    
+      const city=await citiesRepository.destroy(id);
+      return city;
+
+  } catch (error) {
+   
+    if(error.statuscode == StatusCodes.NOT_FOUND){
+
+      throw new AppError("U passed wrong id parameter that is Not present in our database " , error.statuscodes);
+    }
+
+
+    throw new AppError(
+      "Cannot Delete City object ",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+
+  }
+}
+
+
+
+
+async function updatecity(data , id){
+
+  try {
+    
+const city=await citiesRepository.update(data , id);
+  return city;
+
+  } catch (error) {
+  
+    throw new AppError(
+      "Cannot Delete City object ",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+
+    
+  }
+}
+
+
 module.exports={
 
     CreateCities,
+    getCities,
+    getcity,
+    destroycity,
+    updatecity
 }
