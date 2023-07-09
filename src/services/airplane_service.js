@@ -16,12 +16,12 @@ async function createAirpalne(data) {
 
     if (error.name == "SequelizeValidationError") {
       let explanation = [];
-      console.log(error);
+      // console.log(error);
       error.errors.forEach((err) => {
         explanation.push(err.message);
       });
 
-      console.log(explanation);
+      // console.log(explanation);
 
       throw new AppError(explanation, StatusCodes.BAD_REQUEST);
     }
