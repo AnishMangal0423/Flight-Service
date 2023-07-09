@@ -19,6 +19,13 @@ class CrudRepository {
 
 
 
+  /**
+   *  Update Request ->
+   *    /airplanes/:id   
+   * 
+   */
+
+
 
   async update(data, id) {
     try {
@@ -29,7 +36,9 @@ class CrudRepository {
       });
       return response;
     } catch (error) {
-      console.log("error in airplane repository");
+      console.log("error in airplane repository : update function");
+        throw  error;
+    
     }
   }
 
@@ -90,7 +99,7 @@ class CrudRepository {
 
         throw new AppError(" Somethng Went Wrong .. " , StatusCodes.NOT_FOUND);
        }
-       
+
       return response;
     
   }

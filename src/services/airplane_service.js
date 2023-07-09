@@ -108,9 +108,30 @@ async function destroyAirplane(id){
   }
 }
 
+
+
+
+async function updateAirplanes(data , id){
+
+  try {
+    
+const airplane=await airplaneRepository.update(data , id);
+  return airplane;
+
+  } catch (error) {
+  
+    throw new AppError(
+      "Cannot Delete Airplane object ",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+
+    
+  }
+}
 module.exports = {
   createAirpalne,
   getAirplanes,
   getAirplane,
-  destroyAirplane
+  destroyAirplane,
+  updateAirplanes
 };
