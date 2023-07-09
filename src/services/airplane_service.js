@@ -54,7 +54,41 @@ async function getAirplanes(){
 }
 
 
+
+
+async function getAirplane(id){
+
+  try{
+         const airplane=await airplaneRepository.get(id);
+         return airplane;
+
+  }
+
+  catch(error){
+console.log("hello "+error)
+// console.log("hwb "+error.statuscode)
+// console.log(StatusCodes.NOT_FOUND)
+    if(error.statuscode == StatusCodes.NOT_FOUND){
+
+      throw new AppError("U passed wrong id parameter that is out of limit " , error.statuscodes);
+    }
+
+    throw new AppError(
+      "Cannot Get Airplane object ",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+
+    
+  }
+
+}
+
+
+
+
+
 module.exports = {
   createAirpalne,
-  getAirplanes
+  getAirplanes,
+  getAirplane
 };

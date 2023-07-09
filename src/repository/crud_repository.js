@@ -1,3 +1,5 @@
+const AppError = require("../utils/errors/AppError");
+const { StatusCodes } = require("http-Status-Codes");
 class CrudRepository {
   constructor(model) {
     this.model = model;
@@ -32,7 +34,11 @@ class CrudRepository {
   }
 
 
-
+/**
+   *   Get Request ->
+   *    /airplanes  
+   * 
+   */
 
   async getAll() {
     try {
@@ -40,8 +46,29 @@ class CrudRepository {
       return response;
     } catch (error) {
       console.log("error in airplane repository");
+      throw error;
     }
   }
+
+
+  /**
+   *   Get Request ->
+   *    /airplanes/:id   
+   * 
+   */
+  
+  async get(id) {
+  
+      const response = await this.model.findByPk(id);
+      if(!response){
+
+        throw new AppError(" Somethng Went Wrong .. " , StatusCodes.NOT_FOUND);
+       }
+
+      return response;
+  
+      }
+
 
 
 

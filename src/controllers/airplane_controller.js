@@ -20,10 +20,9 @@ async function MakeAirplane(req, res) {
     // console.log("hiiii  " + error);
 
     Error_Res.message = " Something went wrong .. ";
-      // Error_Res.message=
+    // Error_Res.message=
 
-    Error_Res.Error.description = error.message
-    
+    Error_Res.Error.description = error.message;
 
     return res.status(error.statuscode).json({
       Error_Res,
@@ -31,32 +30,44 @@ async function MakeAirplane(req, res) {
   }
 }
 
-
-async function getairplanes(req , res){
-
+async function getairplanes(req, res) {
   try {
-    
-      const airplanes=await airplane_Service.getAirplanes();
-      Correct_Res.data=airplanes;
+    const airplanes = await airplane_Service.getAirplanes();
+    Correct_Res.data = airplanes;
 
-      return res.json({
-
-        Correct_Res
-      })
-
+    return res.json({
+      Correct_Res,
+    });
   } catch (error) {
     Error_Res.message = " Something went wrong .. ";
-    Error_Res.Error.description = error.message
-    
+    Error_Res.Error.description = error.message;
 
     return res.status(error.statuscode).json({
       Error_Res,
-    }); 
+    });
   }
 }
 
+async function getairplane(req, res) {
+  try {
+    const airplane = await airplane_Service.getAirplane(req.params.id);
+    Correct_Res.data = airplane;
+
+    return res.json({
+      Correct_Res,
+    });
+  } catch (error) {
+    Error_Res.message = " Something went wrong .. ";
+    Error_Res.Error.description = error.message;
+
+    return res.json({
+      Error_Res,
+    });
+  }
+}
 
 module.exports = {
   MakeAirplane,
-  getairplanes
+  getairplanes,
+  getairplane,
 };
