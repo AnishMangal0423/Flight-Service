@@ -65,7 +65,7 @@ async function getAirplane(id){
   }
 
   catch(error){
-console.log("hello "+error)
+// console.log("hello "+error)
 // console.log("hwb "+error.statuscode)
 // console.log(StatusCodes.NOT_FOUND)
     if(error.statuscode == StatusCodes.NOT_FOUND){
@@ -85,10 +85,32 @@ console.log("hello "+error)
 
 
 
+async function destroyAirplane(id){
 
+  try {
+    
+      const response=await airplaneRepository.destroy(id);
+      return response;
+
+  } catch (error) {
+   
+    if(error.statuscode == StatusCodes.NOT_FOUND){
+
+      throw new AppError("U passed wrong id parameter that is Not present in our database " , error.statuscodes);
+    }
+
+
+    throw new AppError(
+      "Cannot Delete Airplane object ",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+
+  }
+}
 
 module.exports = {
   createAirpalne,
   getAirplanes,
-  getAirplane
+  getAirplane,
+  destroyAirplane
 };

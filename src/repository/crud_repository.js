@@ -71,21 +71,31 @@ class CrudRepository {
 
 
 
+  /**
+   *  Delete Request ->
+   *    /airplanes/:id   
+   * 
+   */
 
 
   async destroy(data) {
-    try {
+ 
       const response = await this.model.destroy({
         where: {
           id: data,
         },
       });
+
+      if(!response){
+
+        throw new AppError(" Somethng Went Wrong .. " , StatusCodes.NOT_FOUND);
+       }
+       
       return response;
-    } catch (error) {
-      console.log("error in airplane repository");
-    }
+    
   }
 }
 
 
 module.exports=CrudRepository;
+

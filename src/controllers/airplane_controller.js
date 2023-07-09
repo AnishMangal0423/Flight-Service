@@ -66,8 +66,35 @@ async function getairplane(req, res) {
   }
 }
 
+
+
+async function destroyairplane(req , res){
+
+try {
+  
+  const airplane=await airplane_Service.destroyAirplane(req.params.id)
+  Correct_Res.data = airplane;
+
+  return res.json({
+    Correct_Res,
+  });
+
+} catch (error) {
+  
+  Error_Res.message = " Something went wrong .. ";
+    Error_Res.Error.description = error.message;
+
+    return res.json({
+      Error_Res,
+    });
+}
+
+}
+
+
 module.exports = {
   MakeAirplane,
   getairplanes,
   getairplane,
+  destroyairplane
 };

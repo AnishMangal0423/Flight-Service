@@ -9,6 +9,7 @@ const router=express.Router();
 router.post('/' ,ModelNumber,  makeAirplane.MakeAirplane);
 router.get('/' , makeAirplane.getairplanes );
 router.get('/:id' , makeAirplane.getairplane );
+router.delete('/:id' , makeAirplane.destroyairplane)
 
 
 module.exports=router;
