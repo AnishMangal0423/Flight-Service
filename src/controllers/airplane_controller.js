@@ -1,5 +1,6 @@
 const { airplane_Service } = require("../services");
-const {Error_Res , Correct_Res}=require('../utils/common');
+const { Error_Res, Correct_Res } = require("../utils/common");
+const correct_res = require("../utils/common/correct_response");
 
 async function MakeAirplane(req, res) {
   try {
@@ -9,20 +10,23 @@ async function MakeAirplane(req, res) {
       modelNumber: req.body.modelNumber,
       capacity: req.body.capacity,
     });
-    
-      Correct_Res.data=airplane
-     
+
+    Correct_Res.data = airplane;
+
     return res.json({
-          Correct_Res
+      Correct_Res,
     });
   } catch (error) {
-   
-    Error_Res.message=" Something went wrong .. "
-    Error_Res.Error.description="Airplane not created ..some error .. Figure it out in airplane-controller "
+    // console.log("hiiii  " + error);
+
+    Error_Res.message = " Something went wrong .. ";
+      // Error_Res.message=
+
+    Error_Res.Error.description = error.message
     
-    
-    return res.json({
-       Error_Res
+
+    return res.status(error.statuscode).json({
+      Error_Res,
     });
   }
 }

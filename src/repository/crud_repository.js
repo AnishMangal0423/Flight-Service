@@ -11,6 +11,7 @@ class CrudRepository {
       return response;
     } catch (error) {
       console.log("error in airplane repository");
+      throw error;
     }
   }
 
