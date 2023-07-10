@@ -11,6 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+     /**
+      * on javascript level it also provides bindings
+      * 
+      */
+         this.hasMany(models.airports , {
+
+         foreignKey:'cityId',
+         onUpdate:'CASCADE',
+         onDelete:'CASCADE',
+
+         })
+
     }
   }
   Cities.init({
