@@ -50,11 +50,14 @@ class CrudRepository {
    */
 
   async getAll() {
+   console.log(this.model)
+   
     try {
       const response = await this.model.findAll();
+  
       return response;
     } catch (error) {
-      console.log("error in airplane repository");
+      console.log("error in crud repository getall fn"+error);
       throw error;
     }
   }

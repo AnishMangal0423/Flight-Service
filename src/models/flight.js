@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
    
        // Writing all the associated Rules to it..
 
+       
        this.belongsTo(models.Airplane, {
 
            foreignKey:'airplaneId',

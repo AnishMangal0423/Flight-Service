@@ -6,5 +6,6 @@ module.exports={
 
     Info:info,
     makeAirplane:require('./airplane_controller.js'),
-    makeCity:require('./Cities_controller.js')
+    makeCity:require('./Cities_controller.js'),
+    makeAirport:require('./airports-controller.js')
 }
