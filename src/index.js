@@ -24,30 +24,11 @@ app.listen(PORT, async function exec() {
 
 const {Airport , Cities}=require('./models');
 
-  const city= await Cities.findByPk(5);
+  const airport=await Airport.findByPk(6);
 
-    // console.log(city);
+await airport.destroy(6);
 
-  // const data =await Airport.create({
 
-    // name:"Indragandhi airport",
-    // code:'DEL',
-  //   cityId:1
-  // })
-
-  // const data=await city.createAirport({
-  //   name:"Palasod airport",
-  //   code:'PALASOD',
-
-  // })
-
-  //  console.log(data)
-
-// const airports=await city.getAirports()
-// console.log(airports)
-
-  const palasod=await Airport.findByPk(6);
-  const airport=await city.removeAirport(palasod)
 
 });
 
