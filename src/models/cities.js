@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       * on javascript level it also provides bindings
       * 
       */
-         this.hasMany(models.airports , {
+         this.hasMany(models.Airport , {
 
          foreignKey:'cityId',
          onUpdate:'CASCADE',
