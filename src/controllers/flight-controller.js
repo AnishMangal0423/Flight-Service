@@ -44,8 +44,33 @@ async function MakeFlights(req , res){
 
 
 
+
+async function getFlights(req, res) {
+    try {
+      const flights = await flight_service.getAllflight(req.query);
+      Correct_Res.data = flights;
+  
+      return res.json({
+        Correct_Res,
+      });
+    } catch (error) {
+      Error_Res.message = " Something went wrong .. ";
+      Error_Res.Error.description = error.message;
+  
+      return res.status(400).json({
+        Error_Res,
+      });
+    }
+  }
+  
+
+
+
+
+
 module.exports={
 
    MakeFlights,
+   getFlights,
   
 }

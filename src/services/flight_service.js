@@ -1,6 +1,7 @@
 const { FlightRepository } = require("../repository");
 const AppError = require("../utils/errors/AppError");
 const { StatusCodes } = require("http-Status-Codes");
+const{Op}=require('sequelize')
 
 const flightRepository = new FlightRepository();
 
@@ -43,8 +44,75 @@ async function CreateFlights(data){
 }
 
 
+async function getAllflight(query){
 
+    const endingDate="T23:59:00.000Z"
+
+     const customfilter={}
+     const sortFilter={}
+
+    if(query.trip){
+
+        [departureAirportId , ArrivalAirportId]=query.trip.split('-');
+        customfilter.departureAirportId=departureAirportId;
+        customfilter.ArrivalAirportId=ArrivalAirportId;
+    }
+
+
+    if(query.price){
+
+        [minprice , maxprice]=query.price.split('-');
+        customfilter.price={
+            [Op.between]:[minprice,((maxprice == undefined)? 20000000 : maxprice)]
+        }
+    }
+
+
+    if(query.travellers){
+
+        customfilter.totalSeats={
+
+            [Op.gte]:query.travellers
+        }
+    }
+
+
+    if(query.tripDate){
+        console.log("hiiii  "+query.tripDate+endingDate)
+       customfilter.departureTime={
+
+        [Op.between]:[query.tripDate  , query.tripDate+endingDate]
+       }
+
+    }
+
+// if(query.sort){
+
+//     const params=query.sort.split(',');
+//     const sortFilters= params.map((param) => param.split('_'))
+//     sortFilter=sortFilters
+// }
+
+      
+    try{
+
+        // console.log("ssort "+sortFilter)
+        const flights=await flightRepository.getAllFlight(customfilter);
+        return flights;
+
+ }
+
+ catch(error){
+   throw new AppError(
+     "Cannot Get cities object ",
+     StatusCodes.INTERNAL_SERVER_ERROR
+   );
+ }
+
+
+}
 
 module.exports={
-    CreateFlights
+    CreateFlights,
+    getAllflight,
 }
