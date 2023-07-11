@@ -17,18 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", mountRoutes);
 
 
-app.listen(PORT, async function exec() {
+app.listen(PORT, function exec() {
   console.log(`Starting My server at Port ${PORT}`);
-
-// bad code -
-
-const {Airport , Cities}=require('./models');
-
-  const airport=await Airport.findByPk(6);
-
-await airport.destroy(6);
-
-
 
 });
 
