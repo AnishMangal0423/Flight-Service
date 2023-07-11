@@ -9,6 +9,7 @@ class CrudRepository {
     try {
 
         console.log("inside repository")
+        // console.log(model)
       const response = await this.model.create(data);
       return response;
     } catch (error) {
