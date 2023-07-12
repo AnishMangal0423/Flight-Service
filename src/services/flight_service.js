@@ -12,7 +12,7 @@ async function CreateFlights(data){
 
 
      const flights = await flightRepository.create(data);
-     console.log("f "+flights)
+  
      return flights;
 
 
@@ -49,7 +49,7 @@ async function getAllflight(query){
     const endingDate="T23:59:00.000Z"
 
      const customfilter={}
-     const sortFilter={}
+    //  const sortFilter=[]
 
     if(query.trip){
 
@@ -90,21 +90,25 @@ async function getAllflight(query){
 
 //     const params=query.sort.split(',');
 //     const sortFilters= params.map((param) => param.split('_'))
+
+//        console.log("fil ",sortFilters)
 //     sortFilter=sortFilters
 // }
 
       
     try{
 
-        // console.log("ssort "+sortFilter)
+        // console.log("ssort ", sortFilter)
         const flights=await flightRepository.getAllFlight(customfilter);
+        console.log("fli "+flights)
         return flights;
 
  }
 
  catch(error){
+  console.log("error  "+error)
    throw new AppError(
-     "Cannot Get cities object ",
+     "Cannot Get Flight object ",
      StatusCodes.INTERNAL_SERVER_ERROR
    );
  }
@@ -116,3 +120,5 @@ module.exports={
     CreateFlights,
     getAllflight,
 }
+
+

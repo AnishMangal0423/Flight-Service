@@ -1,26 +1,80 @@
 const CrudRepository = require("./crud_repository");
-const { Flight }=require('../models');
+const { Flight, Airplane, Cities, Airport } = require("../models");
+const { Sequelize } = require("sequelize");
 
+class FlightRepository extends CrudRepository {
+  constructor() {
+    super(Flight);
+  }
 
-class FlightRepository extends CrudRepository{
- 
-        constructor(){
-           super(Flight);
-        }
+  // will add some custom functions now-
 
-      // will add some custom functions now-
-      
-       async getAllFlight(filter){
+  async getAllFlight(filter) {
+    // console.log(filter)
+    const response = await Flight.findAll({
+      where: filter,
+      // order:sort,
 
-       
-        const response = await Flight.findAll({
+      include: [
+        {
+          model: Airplane,
+          required: true,
+          as: "airplaneDetail",
+        },
 
-            where:filter,
-            // order:sort
-        })
+        {
+          model: Airport,
+          required: true,
+          as: "departureAirportDetails",
+          on: {
+            col1: Sequelize.where(
+              Sequelize.col("Flight.departureAirportId"),
+              "=",
+              Sequelize.col("departureAirportDetails.code")
+            ),
+          },
+          include: [
+            {
+              model: Cities,
+              required: true,
+            },
+          ],
+        },
 
-        return response
-       }
+        {
+          model: Airport,
+          required: true,
+          as: "arrivalAirportDetails",
+
+          on: {
+            col1: Sequelize.where(
+              Sequelize.col("Flight.arrivalAirportId"),
+              "=",
+              Sequelize.col("arrivalAirportDetails.code")
+            ),
+          },
+          include: [
+            {
+              model: Cities,
+              required: true,
+            },
+          ],
+        },
+      ],
+    });
+    console.log("rees ", response);
+    return response;
+  }
 }
 
-module.exports=FlightRepository;
+module.exports = FlightRepository;
+
+
+/****
+ * 
+ *   In this Commit Part we basically described or expanded our all join quiries to the same table usinng include and model property
+ *   if we not like default naming giving  to our column by using as in both reposiory and model file by including as in foth flight and repo flight we can add naming change
+ * 
+ * it default takes id as mapping but we can do to other column as well as done here by code
+ * 
+ */

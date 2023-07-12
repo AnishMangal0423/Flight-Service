@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
        this.belongsTo(models.Airplane, {
 
            foreignKey:'airplaneId',
-           onDelete:'cascade',
+           as:'airplaneDetail',
+           required:true
 
        })
    
@@ -24,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 
         foreignKey:'departureAirportId',
         onDelete:'cascade',
+        as:'departureAirportDetails'
 
     })
 
@@ -32,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
 
       foreignKey:'arrivalAirportId',
       onDelete:'cascade',
+      as:'arrivalAirportDetails'
 
   })
 
