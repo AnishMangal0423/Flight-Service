@@ -1,6 +1,7 @@
 const CrudRepository = require("./crud_repository");
 const { Flight, Airplane, Cities, Airport } = require("../models");
 const { Sequelize } = require("sequelize");
+const db=require('../models')
 
 class FlightRepository extends CrudRepository {
   constructor() {
@@ -71,15 +72,16 @@ class FlightRepository extends CrudRepository {
 
     async updateRemainingSeat(flightId , seat , dec="true"){
 
-  console.log('inside update ser')
+      // Now i am locking my flightid row for transactions
+       await db.sequelize.query(`SELECT * from Flights WHERE Flights.id = ${flightId} FOR UPDATE; `);
   
    const flight=await Flight.findByPk(flightId);
-    console.log(flight);
+    // console.log(flight);
 
       if(dec=="true"){
-        console.log('hi')
-          const response= await flight.decrement('totalSeats' , {by:seat, isNewRecord: true});
-          console.log(response)
+        // console.log('hi')
+          const response= await flight.decrement('totalSeats' , {by:seat});
+          // console.log(response)
           return response;
 
       }
@@ -87,7 +89,7 @@ class FlightRepository extends CrudRepository {
       else{
     
         const response= await flight.increment('totalSeats' , {by:seat});
-        console.log(response)
+        // console.log(response)
         return response;
 
       }
