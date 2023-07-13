@@ -6,7 +6,8 @@ const router=express.Router();
 
 router.post('/' , flight_middleware,makeFlight.MakeFlights);
 router.get('/',makeFlight.getFlights);
-router.get('/:id', makeFlight.MakeFlights);
+router.get('/:id', makeFlight.getFlight);
+router.patch('/:id/seats', makeFlight.updateSeats);
 
 module.exports=router;
 

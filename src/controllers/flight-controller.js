@@ -86,11 +86,39 @@ async function getFlights(req, res) {
 
 
 
+  async function updateSeats(req , res){
+
+    try {
+      
+    const data=await flight_service.updateseats({
+
+          flightId:req.params.id,
+          seat:req.body.seat,
+          dec:req.body.dec
+    })
+
+    
+    return res.json({
+      Correct_Res,
+    });
+
+    } catch (error) {
+      Error_Res.message = " Something went wrong .. ";
+      Error_Res.Error.description = error.message;
+  
+      return res.json({
+        Error_Res,
+      });
+    }
+  }
+
+
 module.exports={
 
    MakeFlights,
    getFlights,
    getFlight,
+   updateSeats,
 }
 
 

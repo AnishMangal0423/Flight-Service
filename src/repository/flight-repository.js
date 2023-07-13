@@ -65,6 +65,38 @@ class FlightRepository extends CrudRepository {
     console.log("rees ", response);
     return response;
   }
+
+
+    // Now making different function to decrease seat from our databases--
+
+    async updateRemainingSeat(flightId , seat , dec="true"){
+
+  console.log('inside update ser')
+  
+   const flight=await Flight.findByPk(flightId);
+    console.log(flight);
+
+      if(dec=="true"){
+        console.log('hi')
+          const response= await flight.decrement('totalSeats' , {by:seat, isNewRecord: true});
+          console.log(response)
+          return response;
+
+      }
+
+      else{
+    
+        const response= await flight.increment('totalSeats' , {by:seat});
+        console.log(response)
+        return response;
+
+      }
+    }
+
+
+
+
+
 }
 
 module.exports = FlightRepository;

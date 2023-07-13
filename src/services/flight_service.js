@@ -148,11 +148,37 @@ async function getflight(id){
 }
 
 
+async function updateseats(data){
+
+  try {
+    
+     const response=await flightRepository.updateRemainingSeat(data.flightId , data.seat , data.dec);
+     return response;
+
+  } catch (error) {
+
+    console.log("errror ", error)
+   
+    if(error.statuscode == StatusCodes.NOT_FOUND){
+
+      throw new AppError("U passed wrong data or id parameter that is out of limit " , error.statuscodes);
+    }
+
+    throw new AppError(
+      "Cannot Get seat object ",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+
+  }
+}
+
+
 
 module.exports={
     CreateFlights,
     getAllflight,
     getflight,
+   updateseats
 }
 
 
