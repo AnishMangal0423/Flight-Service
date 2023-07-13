@@ -2,6 +2,7 @@ const CrudRepository = require("./crud_repository");
 const { Flight, Airplane, Cities, Airport } = require("../models");
 const { Sequelize } = require("sequelize");
 const db=require('../models')
+const {lockingQuery}=require("./queries")
 
 class FlightRepository extends CrudRepository {
   constructor() {
@@ -71,9 +72,9 @@ class FlightRepository extends CrudRepository {
     // Now making different function to decrease seat from our databases--
 
     async updateRemainingSeat(flightId , seat , dec="true"){
-
+console.log("lll "+ lockingQuery)
       // Now i am locking my flightid row for transactions
-       await db.sequelize.query(`SELECT * from Flights WHERE Flights.id = ${flightId} FOR UPDATE; `);
+       await db.sequelize.query(lockingQuery(flightId));
   
    const flight=await Flight.findByPk(flightId);
     // console.log(flight);
