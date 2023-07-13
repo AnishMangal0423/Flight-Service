@@ -116,9 +116,43 @@ async function getAllflight(query){
 
 }
 
+
+
+
+async function getflight(id){
+
+  try{
+        
+         const flight=await flightRepository.get(id);
+         return flight;
+
+  }
+
+  catch(error){
+// console.log("hello "+error)
+// console.log("hwb "+error.statuscode)
+// console.log(StatusCodes.NOT_FOUND)
+    if(error.statuscode == StatusCodes.NOT_FOUND){
+
+      throw new AppError("U passed wrong id parameter that is out of limit " , error.statuscodes);
+    }
+
+    throw new AppError(
+      "Cannot Get Flight object ",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+
+    
+  }
+
+}
+
+
+
 module.exports={
     CreateFlights,
     getAllflight,
+    getflight,
 }
 
 

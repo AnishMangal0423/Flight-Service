@@ -66,11 +66,31 @@ async function getFlights(req, res) {
 
 
 
+  async function getFlight(req, res) {
+    try {
+      const flight = await flight_service.getflight(req.params.id);
+      Correct_Res.data = flight;
+  
+      return res.json({
+        Correct_Res,
+      });
+    } catch (error) {
+      Error_Res.message = " Something went wrong .. ";
+      Error_Res.Error.description = error.message;
+  
+      return res.json({
+        Error_Res,
+      });
+    }
+  }
+
 
 
 module.exports={
 
    MakeFlights,
    getFlights,
-  
+   getFlight,
 }
+
+
