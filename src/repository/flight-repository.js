@@ -72,28 +72,44 @@ class FlightRepository extends CrudRepository {
     // Now making different function to decrease seat from our databases--
 
     async updateRemainingSeat(flightId , seat , dec="true"){
-console.log("lll "+ lockingQuery)
+
+      console.log("inside update")
       // Now i am locking my flightid row for transactions
+      const transaction = await db.sequelize.transaction();
        await db.sequelize.query(lockingQuery(flightId));
-  
-   const flight=await Flight.findByPk(flightId);
-    // console.log(flight);
 
-      if(dec=="true"){
-        // console.log('hi')
-          const response= await flight.decrement('totalSeats' , {by:seat});
-          // console.log(response)
-          return response;
 
-      }
-
-      else{
+       try {
+        
     
-        const response= await flight.increment('totalSeats' , {by:seat});
-        // console.log(response)
-        return response;
+   const flight=await Flight.findByPk(flightId);
+   // console.log(flight);
+  
+     if(dec=="true"){
+       // console.log('hi')
+        await flight.decrement('totalSeats' , {by:seat} , {transaction:transaction});
+         // console.log(response)
+       
 
+     }
+
+     else{
+   
+      await flight.increment('totalSeats' , {by:seat} , {transaction:transaction});
+     
+
+     }
+        await transaction.commit()
+     return flight;
+
+       } catch (error) {
+        console.log(error)
+       console.log("error occured in flight repository update seats function")
+        await transaction.rollback();
+         throw error;
       }
+
+  
     }
 
 

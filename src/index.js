@@ -14,8 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use("/api", mountRoutes);
 
+app.use("/api", mountRoutes);
+app.use("/flightService/api" , mountRoutes) 
 
 
 app.listen(PORT, function exec() {

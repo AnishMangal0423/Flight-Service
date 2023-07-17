@@ -1,4 +1,3 @@
-const express=require('express');
 
 function info(req , res){
 
@@ -6,7 +5,8 @@ function info(req , res){
 
                message:"ok",
                info_data:{},
-               if:"pranu"
+               if:"pranu",
+               loc:"Flight-service"
                })
 }
 
