@@ -1,36 +1,34 @@
-# Personal Portfolio Website
-This repository contains the source code and assets for my Personal Portfolio Website. The purpose of this website is to showcase my Skills, Projects, and Interests.
-
-View the Website here -> https://agkush.github.io/MyWebsite/
+# Flight Search Service
+This repository contains the source code and assets of Flight Search Service . The purpose of this Repository is to Note down all the Flights based on Filters like Source to Destination , Date , Time , Price , Number of Passengers.
 
 ## Features
-* Responsive Design: The website is designed to adapt and provide an optimal viewing experience across various devices and screen sizes.
-* Home Page: Introduce myself and provide a brief overview of my background and expertise.
-* Projests: Display a curated selection of my projects, including descriptions and links to live demos or GitHub repositories.
-* Skills: Highlight my technical skills and areas of expertise, such as programming languages, frameworks, tools, or methodologies.
-* Education: Provide information about my educational background, degrees amd certifications.
-* Blogs: Redirects you to Blogger.com where you can find blogs posted by me.
-* Contact: Offer various ways to get in touch with me, such as through a contact form, email, or social media links.
+
 
 ## Technologies Used
-* HTML: The structure and content of the webpages are built using HTML5.
-* CSS: The visual styles and layout are defined using CSS3.
-* JavaScript: Add interactivity and dynamic elements to the website using JavaScript.
+* Nodejs: The http module and Tcp connection is used.
+* Expressjs: Nodejs popular Framework Expressjs and its server is used.
+* MySql: Database MySql is used to store all the flights Information.
+* Sequelize-Cli: Sql Queries written by Sequleize framework maintained by MySql officialy.
 * Bootstrap: Utilize the Bootstrap framework to ensure a responsive design.
+* Postman: Used the Postman to request all Raw Api calls(Post , Get , Patch).
 * Git: Version control system for tracking changes.
-* GitHub Pages: Deploy the website easily using GitHub Pages for free hosting.
+* GitHub Pages: Deploy the Service easily using GitHub Pages for free hosting.
 
 ## Credits
 
-* https://undraw.co/ provided me with free svg illustrations.
+<!-- * https://undraw.co/ provided me with free svg illustrations.
 * https://freesvgillustration.com/ provided me with free svg illustrations.
 * ChatGPT helped me in development, CSS formatting and debugging.
-* Github for free deployment of website.
+* Github for free deployment of website. -->
+
+ For Accessing My Flight Search Services and Interacting with My Database use- 
+ * http:\\localhost:3000\api\v1\flights
+ * http:\\localhost:5000\flightService\api\v1\flights
 
 ## Contact
 If you have any questions, suggestions, or feedback, feel free to contact me through the following channels:
 
-* Email: agkush2001@gmail.com
-* LinkedIn: https://www.linkedin.com/in/kushagra-agarwal-319245219/
+* Email: anishm0423@gmail.com
+* LinkedIn: https://www.linkedin.com/in/anish-mangal-35b758223/
 
-Thank you for visiting my personal portfolio website repository! I appreciate your interest and support.
+Thank you for visiting my Flight Search service. I appriciate your Interest and support!
