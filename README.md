@@ -1,4 +1,4 @@
-<img src="https://i.pinimg.com/originals/d6/d1/e0/d6d1e0bbdd2eda8f44a2125154670e82.gif" style="height:400px" alt="Blurred Airline Image">
+<img src="https://i.pinimg.com/originals/d6/d1/e0/d6d1e0bbdd2eda8f44a2125154670e82.gif"  alt="Blurred Airline Image">
 
 # Flight Search Service
 This repository contains the source code and assets of Flight Search Service . The purpose of this Repository is to Note down all the Flights based on Filters like Source to Destination , Date , Time , Price , Number of Passengers.
