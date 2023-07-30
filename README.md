@@ -22,8 +22,8 @@ This repository contains the source code and assets of Flight Search Service . T
 * Github for free deployment of website. -->
 
  For Accessing My Flight Search Services and Interacting with My Database use- 
- * http:\\localhost:3000\api\v1\flights
- * http:\\localhost:5000\flightService\api\v1\flights
+ * http://localhost:3000/api/v1/flights
+ * API Gateway Link -> http://localhost:5000/flightService/api/v1/flights
 
 ## Contact
 If you have any questions, suggestions, or feedback, feel free to contact me through the following channels:
