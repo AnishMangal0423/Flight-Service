@@ -7,7 +7,7 @@ const app = express();
 app.get("/", (req, res) => {
   res.json({
     name: "Anish",
-    fg: "Pranu Bhandari",
+    fg: "Inside Flight Service",
   });
 });
 app.use(express.json());

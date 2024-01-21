@@ -3,6 +3,13 @@
 # Flight Search Service
 This repository contains the source code and assets of Flight Search Service . The purpose of this Repository is to Note down all the Flights based on Filters like Source to Destination , Date , Time , Price , Number of Passengers.
 
+## Block Diagram 
+
+![Alt text](Project-Block-Diagram.jpg)
+![Alt text](Flight-Search-Service-Block-Diagram.jpg)
+
+
+
 ## Features
 
 
