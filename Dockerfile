@@ -2,8 +2,11 @@ FROM node
 
 WORKDIR /developer/nodejs/flight-service
 
-COPY . .
+COPY package*.json ./
 
-RUN npm ci
+RUN npm install
+COPY . /src
+# COPY . .
 
+EXPOSE 4000
 CMD ["npm", "run", "anish"]
